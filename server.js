@@ -6,6 +6,7 @@ var querystring = require('querystring');
 var baseUrl = 'https://sheltered-fjord-8956.herokuapp.com';
 
 var app = express();
+app.set('port', (process.env.PORT || 2000));
 var http = require('http').createServer(app);
 var io = require('socket.io')(http);
 
@@ -14,7 +15,7 @@ app.use(express.static(__dirname + '/../'));
 app.use(bodyParser.json());
 
 app.get('/', function(request, response) {
-  response.redirect(baseUrl + '/controls.html');
+  response.redirect('/controls.html');
 });
 
 app.get('/shoes', function(clientRequest, clientResponse) {
@@ -29,8 +30,8 @@ app.get('/shirt', function(clientRequest, clientResponse) {
   return;
 });
 
-http.listen(port, function() {
-  console.log('App listening on', port);
+http.listen(app.get('port'), function() {
+  console.log('App listening on', app.get('port'));
 });
 
 io.on('connection', function(socket) {
