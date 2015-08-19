@@ -3,8 +3,7 @@ var bodyParser = require('body-parser');
 var request = require('request');
 var querystring = require('querystring');
 
-var port = 2000;
-var baseUrl = 'http://localhost:' + port;
+var baseUrl = 'https://sheltered-fjord-8956.herokuapp.com';
 
 var app = express();
 var http = require('http').createServer(app);
